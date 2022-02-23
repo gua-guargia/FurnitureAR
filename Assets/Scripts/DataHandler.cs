@@ -7,7 +7,7 @@ using UnityEngine.AddressableAssets;
 
 public class DataHandler : MonoBehaviour
 {
-    [SerializeField]private GameObject furniture;
+    [SerializeField] private GameObject furniture;
     
     [SerializeField] private ButtonManager buttonPrefab;
     [SerializeField] private GameObject buttonContainer;
@@ -33,20 +33,21 @@ public class DataHandler : MonoBehaviour
     private async void Start()
     {
         _items = new List<Item>();
-        //LoadItems();
+        LoadItems();
         await Get(label);
         CreateButtons();
     }
 
-    // void LoadItems()
-    // {
-    //     var items_obj =Resources.LoadAll("Items",typeof(Item));
-    //     foreach (var item in items_obj)
-    //     {
-    //         _items.Add(item as Item);
-    //     }
-    //     
-    // }
+    void LoadItems()
+    {
+        var items_obj =Resources.LoadAll("Items",typeof(Item));
+        foreach (var item in items_obj)
+        {
+            _items.Add(item as Item);
+        }
+        
+    }
+    
     void CreateButtons()
     {
         foreach (Item i in _items)

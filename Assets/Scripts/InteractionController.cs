@@ -51,7 +51,7 @@ public class InteractionController : ARBaseGestureInteractable
         protected override bool CanStartManipulationForGesture(TapGesture gesture)
         {
             // Allow for test planes
-            if (gesture.TargetObject == null || gesture.TargetObject.layer == 9) // TODO Placement gesture layer check should be configurable
+            if (gesture.targetObject == null || gesture.targetObject.layer == 9) // TODO Placement gesture layer check should be configurable
                 return true;
 
             return false;
@@ -97,12 +97,12 @@ public class InteractionController : ARBaseGestureInteractable
         protected override void OnEndManipulation(TapGesture gesture)
         {
             
-            if (gesture.WasCancelled || !crosshair.activeSelf)
+            if (gesture.isCanceled || !crosshair.activeSelf)
                 return;
 
             // If gesture is targeting an existing object we are done.
             // Allow for test planes
-            if (gesture.TargetObject != null && gesture.TargetObject.layer != 9) // TODO Placement gesture layer check should be configurable
+            if (gesture.targetObject != null && gesture.targetObject.layer != 9) // TODO Placement gesture layer check should be configurable
                 return;
 
             if (IsPointerOverUI(gesture))
